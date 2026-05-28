@@ -8,22 +8,13 @@
     quick-tap-ms = <0>;
 };
 
+// --- 最新のZMK仕様に準拠したトラックボール速度・AML設定 ---
 &trackball {
     automouse-layer = <4>;
     scroll-layers = <5>;
-
-    // arrows {
-    //     layers = <3>;
-    //     bindings =
-    //         <&kp RIGHT_ARROW>,
-    //         <&kp LEFT_ARROW>,
-    //         <&kp UP_ARROW>,
-    //         <&kp DOWN_ARROW>;
-
-    //     tick = <10>;
-    //     wait-ms = <5>;
-    //     tap-ms = <5>;
-    // };
+    
+    // 最新仕様では「res-cpi」というプロパティ名で速度を1200に指定します
+    res-cpi = <1200>;
 };
 
 / {
@@ -145,20 +136,5 @@
 &trans  &trans  &trans  &trans      &trans       &trans      &trans  &trans                                   &trans
             >;
         };
-    };
-};
-
-// ファイルの最末尾に追記
-&pinctrl {
-    // 既存の設定との衝突を防ぐため、空でもこのブロックの直後に置くことで
-    // ドライバ側のノード定義を上書きします
-};
-
-&spi0 {
-    status = "okay";
-    trackball: pmw3610@0 {
-        status = "okay";
-        // 通常時の解像度（速度）を1200に設定
-        cpi = <1200>; 
     };
 };
