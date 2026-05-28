@@ -8,13 +8,24 @@
     quick-tap-ms = <0>;
 };
 
-// --- 最新のZMK仕様に準拠したトラックボール速度・AML設定 ---
+// --- トラックボール設定（ZMK v0.3用） ---
+// 速度設定はここには書かず、roBa.confの CONFIG_PMW3610_CPI=1200 で制御します。
 &trackball {
     automouse-layer = <4>;
     scroll-layers = <5>;
-    
-    // 最新仕様では「res-cpi」というプロパティ名で速度を1200に指定します
-    res-cpi = <1200>;
+
+    // arrows {
+    //     layers = <3>;
+    //     bindings =
+    //         <&kp RIGHT_ARROW>,
+    //         <&kp LEFT_ARROW>,
+    //         <&kp UP_ARROW>,
+    //         <&kp DOWN_ARROW>;
+
+    //     tick = <10>;
+    //     wait-ms = <5>;
+    //     tap-ms = <5>;
+    // };
 };
 
 / {
