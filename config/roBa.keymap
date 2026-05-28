@@ -8,11 +8,9 @@
     quick-tap-ms = <0>;
 };
 
-// --- AML（オートマウス）の設定変更 ---
 &trackball {
     automouse-layer = <4>;
     scroll-layers = <5>;
-    delay-ms = <500>; // トラックボールを止めてから元のレイヤーに戻るまでの時間（ミリ秒）
 
     // arrows {
     //     layers = <3>;
