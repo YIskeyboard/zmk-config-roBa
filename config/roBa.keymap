@@ -12,9 +12,6 @@
     automouse-layer = <4>;
     scroll-layers = <5>;
 
-    // トラックボールの基本速度（感度）を 1200 CPI に変更
-    res-cpi = <1200>;
-
     // arrows {
     //     layers = <3>;
     //     bindings =
