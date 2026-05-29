@@ -60,26 +60,3 @@
     };
 };
 
-/* ① 1.5倍にするプロセッサの定義をルートノードに追加 */
-/ {
-    roba_x_scaler: roba_x_scaler {
-        compatible = "zmk,input-processor-scaler";
-        #input-processor-cells = <2>;
-        type = <INPUT_EV_REL>;
-        codes = <INPUT_REL_X>;        /* X軸（横方向）のみを対象 */
-        track-remainders;
-    };
-};
-
-/* ② 既存の trackball_listener を上書き、または定義 */
-/ {
-    trackball_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
-        
-        /* 既存の設定（あればそのまま残す）に、横1.5倍処理を「後ろ」に追加 */
-        input-processors = 
-            <&mouse_runtime_input_processor>, /* 元から記述があれば残す */
-            <&roba_x_scaler 3 2>;             /* ★横方向を3/2倍（1.5倍）にする */
-    };
-};
