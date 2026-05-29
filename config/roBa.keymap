@@ -150,24 +150,3 @@
     };
 };
 
-/* ========================================================================== */
-/* roBa 横方向1.5倍カスタム設定                                                */
-/* ========================================================================== */
-
-/* ① 1.5倍プロセッサの定義 */
-/ {
-    roba_x_scaler: roba_x_scaler {
-        compatible = "zmk,input-processor-scaler";
-        #input-processor-cells = <2>;
-        type = <INPUT_EV_REL>;
-        codes = <INPUT_REL_X>;  /* ★ codes (複数形) で INPUT_REL_X を指定 */
-        track-remainders;
-    };
-};
-
-/* ② トラックボール動作への適用 */
-&trackball_listener {
-    status = "okay";
-    /* トラックボールのベース処理のあとに、横1.5倍処理(分子3, 分母2)を挟み込む */
-    input-processors = <&roba_x_scaler 3 2>; 
-};
