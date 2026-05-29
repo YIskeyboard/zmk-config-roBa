@@ -149,3 +149,15 @@
         };
     };
 };
+
+/ {
+    /* 横方向（X軸）の動きを1.5倍にするプロセッサ */
+    roba_x_scaler: roba_x_scaler {
+        compatible = "zmk,input-processor-scaler";
+        #input-processor-cells = <2>;
+        type = <INPUT_EV_REL>;
+        code = <REL_X>;        /* X軸（横方向）のみを指定 */
+        multiplier = <3>;     /* 分子 */
+        divisor = <2>;        /* 分母 (3÷2 = 1.5倍) */
+    };
+};
