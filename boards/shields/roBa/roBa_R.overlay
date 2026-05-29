@@ -60,6 +60,3 @@
     };
 };
 
-// MacのBluetoothに最適なパケット間隔に強制固定する
-#define CONFIG_BT_PERIPHERAL_PREF_MIN_INT 9
-#define CONFIG_BT_PERIPHERAL_PREF_MAX_INT 12
