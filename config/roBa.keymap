@@ -150,3 +150,25 @@
     };
 };
 
+/* ========================================================================== */
+/* roBa 横方向（X軸）のみ1.5倍カスタム設定                                   */
+/* ========================================================================== */
+
+/* ① X軸（横方向）の定数を数値で直接指定してプロセッサを定義 */
+/ {
+    roba_x_scaler: roba_x_scaler {
+        compatible = "zmk,input-processor-scaler";
+        #input-processor-cells = <2>;
+        type = <0x02>;       /* INPUT_EV_REL を数値(0x02)で直接指定 */
+        codes = <0x00>;      /* INPUT_REL_X を数値(0x00)で直接指定 */
+        track-remainders;
+    };
+};
+
+/* ② トラックボールの既存リスナーに定義したスケーラーを適用 */
+&trackball_listener {
+    status = "okay";
+    input-processors = 
+        <&zip_xy_scaler 1 1>,   /* ベースの速度（等倍） */
+        <&roba_x_scaler 3 2>;   /* 横方向（X軸）のみ 3/2倍（1.5倍）に調整 */
+};
