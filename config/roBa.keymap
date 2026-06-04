@@ -29,12 +29,12 @@
 };
 
 / {
-    /* ↓【重要】X軸（横方向）だけを2倍にする処理は、このリスナー内に記述します */
+    /* ↓ 左手側ビルドでのエラーを防ぐため、INPUT_REL_X の代わりに生の数値「0」を指定します */
     trackball_listener {
         status = "okay";
         compatible = "zmk,input-listener";
         device = <&trackball>;
-        input-processors = <&input_processor_scaler INPUT_REL_X 2 1>;
+        input-processors = <&input_processor_scaler 0 2 1>;
     };
 
     combos {
