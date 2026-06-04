@@ -29,19 +29,28 @@
 };
 
 / {
-    /* ↓ 右手側（roBa_R）のビルド時のみこの設定を適用し、左手側のエラーを防ぎます */
+    /* ↓【重要】右手側ビルド時のみ、横方向だけを狙い撃ちするカスタム2倍スケーラーを作ります */
 #ifdef SHIELD_ROBA_R
+    my_x_scaler: my_x_scaler {
+        compatible = "zmk,input-processor-scaler";
+        #input-processor-cells = <2>;
+        type = <INPUT_EV_REL>;
+        codes = <INPUT_REL_X>; // 画面の横移動（X軸）だけを対象にする指定
+        track-remainders;
+    };
+
     trackball_listener {
         status = "okay";
         compatible = "zmk,input-listener";
         device = <&trackball>;
-        input-processors = <&input_processor_scaler 0 2 1>;
+        
+        /* 上で作ったカスタムスケーラーを呼び出し、2/1倍（2倍）を適用 */
+        input-processors = <&my_x_scaler 2 1>;
     };
 #endif
 
     combos {
         compatible = "zmk,combos";
-
         tab {
             bindings = <&kp TAB>;
             key-positions = <11 12>;
