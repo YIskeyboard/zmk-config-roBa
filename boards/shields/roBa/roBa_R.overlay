@@ -1,3 +1,4 @@
+#include <input/processors.dtsi> /* ←ビルドを通すために必須の行です */
 #include "roBa.dtsi"
 
 &default_transform {
@@ -20,7 +21,7 @@
         compatible = "zmk,input-listener";
         device = <&trackball>;
         
-        /* ↓ここに追加：横方向（X軸）のみ速度を2倍（2/1倍）に設定 */
+        /* 横方向（X軸）のみ速度を2倍（2/1倍）に設定 */
         input-processors = <&zip_x_scaler 2 1>;
     };
 };
