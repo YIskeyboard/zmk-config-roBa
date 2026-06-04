@@ -44,7 +44,7 @@
         compatible = "zmk,input-listener";
         device = <&trackball>;
         
-        /* 上で作ったカスタムスケーラーを呼び出し、８/1倍（８倍）を適用 */
+        /* 上で作ったカスタムスケーラーを呼び出し、16/1倍（16倍）を適用 */
         input-processors = <&my_x_scaler 2 1>;
     };
 #endif
