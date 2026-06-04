@@ -14,6 +14,9 @@
     automouse-layer = <4>;
     scroll-layers = <5>;
 
+     /* ↓ここに追加：横方向（X軸）のみ速度を2倍（2/1倍）に設定 */
+    input-processors = <&zip_x_scaler 2 1>;
+
     // arrows {
     //     layers = <3>;
     //     bindings =
