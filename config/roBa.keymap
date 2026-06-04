@@ -29,13 +29,15 @@
 };
 
 / {
-    /* ↓ 左手側ビルドでのエラーを防ぐため、INPUT_REL_X の代わりに生の数値「0」を指定します */
+    /* ↓ 右手側（roBa_R）のビルド時のみこの設定を適用し、左手側のエラーを防ぎます */
+#ifdef SHIELD_ROBA_R
     trackball_listener {
         status = "okay";
         compatible = "zmk,input-listener";
         device = <&trackball>;
         input-processors = <&input_processor_scaler 0 2 1>;
     };
+#endif
 
     combos {
         compatible = "zmk,combos";
