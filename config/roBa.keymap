@@ -13,7 +13,6 @@
 &trackball {
     automouse-layer = <4>;
     scroll-layers = <5>;
-    rotation-angle = <90>; 
 
     // arrows {
     //     layers = <3>;
