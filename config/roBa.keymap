@@ -45,6 +45,15 @@
          *  - `INPUT_TRANSFORM_X_INVERT` などを組み合わせることで、任意の角度に回転できます。
          *  - もし「20度」のズレが直らない（余計にズレる）場合は、ここの値を変更します。
          */
+        input-processors = <&zip_xy_transform (205)>; // ←★このように（205）に変更します
+    };
+#endif
+        
+        /* 
+         * 【解説】
+         *  - `INPUT_TRANSFORM_X_INVERT` などを組み合わせることで、任意の角度に回転できます。
+         *  - もし「20度」のズレが直らない（余計にズレる）場合は、ここの値を変更します。
+         */
         input-processors = <&zip_xy_transform (INPUT_TRANSFORM_DEGREE_25)>;
     };
 #endif
