@@ -10,9 +10,13 @@
 
 // --- トラックボール設定（ZMK v0.3用） ---
 // 速度設定はここには書かず、roBa.confの CONFIG_PMW3610_CPI=1200 で制御します。
+
+　　// --- トラックボール設定（ZMK v0.3用） ---
 &trackball {
+    status = "okay";
     automouse-layer = <4>;
     scroll-layers = <5>;
+    // (arrows以下略)
 
     // arrows {
     //     layers = <3>;
