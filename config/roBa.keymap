@@ -10,71 +10,22 @@
 };
 
 // --- トラックボール設定（ZMK v0.3用） ---
-// 速度設定はここには書かず、roBa.confの CONFIG_PMW3610_CPI=1200 で制御します。
-
-　　// --- トラックボール設定（ZMK v0.3用） ---
 &trackball {
     status = "okay";
     automouse-layer = <4>;
     scroll-layers = <5>;
-    // (arrows以下略)
-
-    // arrows {
-    //     layers = <3>;
-    //     bindings =
-    //         <&kp RIGHT_ARROW>,
-    //         <&kp LEFT_ARROW>,
-    //         <&kp UP_ARROW>,
-    //         <&kp DOWN_ARROW>;
-
-    //     tick = <10>;
-    //     wait-ms = <5>;
-    //     tap-ms = <5>;
-    // };
 };
 
 / {
-    /* ↓ 右手側ビルド時のみ、20度の傾きを真っ直ぐに補正する設定を入れます */
+    /* ↓ 右手側ビルド時のみ、25度の傾き補正と180度反転を設定します */
 #ifdef SHIELD_ROBA_R
     trackball_listener {
         status = "okay";
         compatible = "zmk,input-listener";
         device = <&trackball>;
          
-        /* 
-         * 25度の傾き補正をかけた上で、X軸とY軸を同時に反転（180度回転）させます。
-         * 冒頭で「input_transform.h」を読み込むことで、エラーなく完全に動作します。
-         */
-        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_DEGREE_25 | INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>;
-    };
-#endif
-        
-        /* 
-         * 25度補正の後に、X軸とY軸を反転させるプロセッサをコンマで繋いで追加します。
-         * ZMKの公式仕様に沿った安全な記述です。
-         */
-        input-processors = 
-            <&zip_xy_transform (INPUT_TRANSFORM_DEGREE_25)>,
-            <&zip_xy_scaler 1 1>,
-            <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>;
-    };
-#endif
-        
-        /* 
-         * 【解説】
-         *  - `INPUT_TRANSFORM_X_INVERT` などを組み合わせることで、任意の角度に回転できます。
-         *  - もし「20度」のズレが直らない（余計にズレる）場合は、ここの値を変更します。
-         */
-        input-processors = <&zip_xy_transform (205)>; // ←★このように（205）に変更します
-    };
-#endif
-        
-        /* 
-         * 【解説】
-         *  - `INPUT_TRANSFORM_X_INVERT` などを組み合わせることで、任意の角度に回転できます。
-         *  - もし「20度」のズレが直らない（余計にズレる）場合は、ここの値を変更します。
-         */
-        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_DEGREE_25)>;
+        /* カッコを排除し、25度補正、X反転、Y反転を同時に指定します */
+        input-processors = <&zip_xy_transform INPUT_TRANSFORM_DEGREE_25 | INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT>;
     };
 #endif
 
