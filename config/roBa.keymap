@@ -24,8 +24,8 @@
         compatible = "zmk,input-listener";
         device = <&trackball>;
          
-        /* カッコを排除し、25度補正、X反転、Y反転を同時に指定します */
-        input-processors = <&zip_xy_transform INPUT_TRANSFORM_DEGREE_40 | INPUT_TRANSFORM_Y_INVERT>;
+        /* カッコを排除し、155度補正、X反転、Y反転を同時に指定します */
+        input-processors = <&zip_xy_transform INPUT_TRANSFORM_DEGREE_155 | INPUT_TRANSFORM_Y_INVERT>;
     };
 #endif
 
