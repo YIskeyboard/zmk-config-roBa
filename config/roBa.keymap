@@ -41,6 +41,17 @@
         device = <&trackball>;
         
         /* 
+         * 25度補正の後に、X軸とY軸を反転させるプロセッサをコンマで繋いで追加します。
+         * ZMKの公式仕様に沿った安全な記述です。
+         */
+        input-processors = 
+            <&zip_xy_transform (INPUT_TRANSFORM_DEGREE_25)>,
+            <&zip_xy_scaler 1 1>,
+            <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>;
+    };
+#endif
+        
+        /* 
          * 【解説】
          *  - `INPUT_TRANSFORM_X_INVERT` などを組み合わせることで、任意の角度に回転できます。
          *  - もし「20度」のズレが直らない（余計にズレる）場合は、ここの値を変更します。
