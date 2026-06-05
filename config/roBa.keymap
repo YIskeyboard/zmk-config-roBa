@@ -40,7 +40,7 @@
         status = "okay";
         compatible = "zmk,input-listener";
         device = <&trackball>;
-        
+         
         /* 
          * 25度の傾き補正をかけた上で、X軸とY軸を同時に反転（180度回転）させます。
          * 冒頭で「input_transform.h」を読み込むことで、エラーなく完全に動作します。
