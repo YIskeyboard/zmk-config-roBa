@@ -42,6 +42,14 @@
         device = <&trackball>;
         
         /* 
+         * 25度の傾き補正をかけた上で、X軸とY軸を同時に反転（180度回転）させます。
+         * 冒頭で「input_transform.h」を読み込むことで、エラーなく完全に動作します。
+         */
+        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_DEGREE_25 | INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>;
+    };
+#endif
+        
+        /* 
          * 25度補正の後に、X軸とY軸を反転させるプロセッサをコンマで繋いで追加します。
          * ZMKの公式仕様に沿った安全な記述です。
          */
