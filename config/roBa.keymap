@@ -37,7 +37,7 @@
         device = <&trackball>;
         
         /* 155度指定により、斜めに逃げていた上下移動を真っ直ぐに軌道修正します */
-        input-processors = <&zip_xy_transform 155 | INPUT_TRANSFORM_Y_INVERT>;
+        input-processors = <&zip_xy_transform 155 | INPUT_TRANSFORM_Y_INVERT> | INPUT_TRANSFORM_X_INVERT>;
     };
 #endif
 
