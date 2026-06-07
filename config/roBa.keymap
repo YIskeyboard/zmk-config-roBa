@@ -1,6 +1,7 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/input_transform.h> // ★反転と角度調整に必須のファイルを追記しました
 #include <dt-bindings/zmk/pointing.h>
 
 &mt {
@@ -9,6 +10,7 @@
 };
 
 &trackball {
+    status = "okay"; // ★明示的に有効化しておきます
     automouse-layer = <4>;
     scroll-layers = <5>;
 
@@ -27,6 +29,18 @@
 };
 
 / {
+    /* ↓ 右手側ビルド時のみ、斜めブレを消す155度補正と、Y反転（Macの直感方向）を発動させます */
+#ifdef SHIELD_ROBA_R
+    trackball_listener {
+        status = "okay";
+        compatible = "zmk,input-listener";
+        device = <&trackball>;
+        
+        /* 155度指定により、斜めに逃げていた上下移動を真っ直ぐに軌道修正します */
+        input-processors = <&zip_xy_transform 155 | INPUT_TRANSFORM_Y_INVERT>;
+    };
+#endif
+
     combos {
         compatible = "zmk,combos";
 
