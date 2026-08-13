@@ -1,7 +1,7 @@
+#include <dt-bindings/zmk/input_transform.h> // ★反転と角度調整に必須のファイルを追記しました
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/input_transform.h> // ★反転と角度調整に必須のファイルを追記しました
 #include <dt-bindings/zmk/pointing.h>
 
 &mt {
@@ -21,7 +21,6 @@
     //         <&kp LEFT_ARROW>,
     //         <&kp UP_ARROW>,
     //         <&kp DOWN_ARROW>;
-
     //     tick = <10>;
     //     wait-ms = <5>;
     //     tap-ms = <5>;
@@ -29,12 +28,13 @@
 };
 
 / {
-  #ifdef SHIELD_ROBA_R
+    #ifdef SHIELD_ROBA_R
+
     trackball_listener {
         status = "okay";
         compatible = "zmk,input-listener";
         device = <&trackball>;
-        
+
         /* 
          * 【0.3専用修正】
          * 1. 155度の回転
@@ -44,10 +44,13 @@
          * ※もし「横長の楕円」になる場合は、右側の数値を「130」や「140」に増やしてください。
          * ※もし「縦長の楕円」になる場合は、左側の数値を「120」などに増やしてください。
          */
-        input-processors = <&zip_xy_transform 155 | INPUT_TRANSFORM_Y_INVERT | INPUT_TRANSFORM_X_INVERT>,
-                           <&zip_xy_scaler 100 120>; 
+
+        input-processors =
+            <&zip_xy_transform 155 | INPUT_TRANSFORM_Y_INVERT | INPUT_TRANSFORM_X_INVERT>,
+            <&zip_xy_scaler 100 120>;
     };
-#endif
+
+    #endif
 
     combos {
         compatible = "zmk,combos";
@@ -103,10 +106,10 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp W         &kp E         &kp R             &kp T                                                  &kp Y        &kp U  &kp I      &kp O    &kp P
-&kp A             &kp S         &kp D         &kp F             &kp G             &kp LS(LG(S))         &lt 5 MINUS    &kp H        &kp J  &kp K      &kp L    &lt 6 SEMICOLON
-&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V             &kp B             &lt 4 APOSTROPHE      &lt 3 EQUAL    &kp N        &kp M  &kp COMMA  &kp DOT  &mt RIGHT_SHIFT SLASH
-&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 6 LANGUAGE_2  &lt 2 LANGUAGE_1  &lt 1 SPACE           &kp BACKSPACE  &lt 2 ENTER                             &kp RCTRL
+&kp Q             &kp W           &kp E         &kp R             &kp T                                                  &kp Y        &kp U  &kp I      &kp O    &kp P
+&kp A             &kp S           &kp D         &kp F             &kp G             &kp LS(LG(S))         &lt 5 MINUS    &kp H        &kp J  &kp K      &kp L    &lt 6 SEMICOLON
+&mt LEFT_SHIFT Z  &kp X           &kp C         &kp V             &kp B             &lt 4 APOSTROPHE      &lt 3 EQUAL    &kp N        &kp M  &kp COMMA  &kp DOT  &mt RIGHT_SHIFT SLASH
+&lt 1 LCTRL       &lt 3 LEFT_WIN  &kp LEFT_ALT  &lt 6 LANGUAGE_2  &lt 2 LANGUAGE_1  &lt 5 SPACE           &kp BACKSPACE  &lt 2 ENTER                             &lt 1 RCTRL
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
